@@ -11,13 +11,11 @@
     --border-glow: rgba(111, 168, 220, 0.28);
     --border-soft: rgba(111, 168, 220, 0.14);
 
-    /* Azul acero metálico */
     --azul-metal: #4a7fb5;
     --azul-claro: #6fa8dc;
     --azul-hielo: #b8d4f0;
     --plata: #c8d2e0;
 
-    /* Rojo metálico */
     --rojo-metal: #c8102e;
     --rojo-claro: #ff4d5e;
     --rojo-oscuro: #7a0a1c;
@@ -106,7 +104,7 @@ body {
     letter-spacing: 0.02em;
 }
 
-/* ---------- Paneles (glassmorphism metálico) ---------- */
+/* ---------- Paneles ---------- */
 .panel {
     position: relative;
     background:
@@ -122,7 +120,6 @@ body {
     overflow: hidden;
 }
 
-/* Línea metálica superior: azul → rojo */
 .panel::before {
     content: "";
     position: absolute;
@@ -149,6 +146,7 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
+    flex-wrap: wrap;
 }
 
 .panelTitulo::before {
@@ -161,7 +159,7 @@ body {
     flex: 0 0 auto;
 }
 
-/* ---------- Formulario (grid responsive) ---------- */
+/* ---------- Formulario ---------- */
 .divFormulario {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -187,7 +185,7 @@ body {
     margin-bottom: 8px;
 }
 
-/* ---------- Inputs metálicos ---------- */
+/* ---------- Inputs ---------- */
 .txtInput {
     width: 100%;
     font-family: var(--font-body);
@@ -218,7 +216,6 @@ body {
     box-shadow: 0 0 0 3px rgba(111, 168, 220, 0.18), 0 0 18px rgba(74, 127, 181, 0.35);
 }
 
-/* Select con flecha personalizada (azul metálico) */
 select.txtInput {
     cursor: pointer;
     background-image:
@@ -237,7 +234,6 @@ select.txtInput option {
     color: var(--text-main);
 }
 
-/* Quitar flechas de number */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -274,7 +270,6 @@ input[type="number"] {
     margin-top: 30px;
 }
 
-/* Botón rojo metálico con brillo plateado */
 .botonRegistrar {
     font-family: var(--font-display);
     font-size: 0.82rem;
@@ -312,7 +307,7 @@ input[type="number"] {
     filter: brightness(0.95);
 }
 
-/* Mensaje de registro (base neutra) */
+/* ---------- Mensaje de registro ---------- */
 .mensajeRegistro {
     margin: 0;
     font-size: 0.92rem;
@@ -332,19 +327,39 @@ input[type="number"] {
     text-shadow: 0 0 14px rgba(111, 168, 220, 0.45);
 }
 
-/* ---------- Tabla metálica ---------- */
+/* ---------- Tabla ---------- */
 .tabla {
     width: 100%;
     overflow-x: auto;
     border-radius: 12px;
     border: 1px solid var(--border-soft);
     -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--azul-metal) rgba(0, 0, 0, 0.2);
+}
+
+.tabla::-webkit-scrollbar {
+    height: 8px;
+}
+
+.tabla::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.tabla::-webkit-scrollbar-thumb {
+    background: var(--azul-metal);
+    border-radius: 4px;
+}
+
+.tabla::-webkit-scrollbar-thumb:hover {
+    background: var(--azul-claro);
 }
 
 .tabla table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 760px;
+    min-width: 920px;
     font-size: 0.92rem;
 }
 
@@ -384,66 +399,11 @@ input[type="number"] {
     border-bottom: none;
 }
 
-/* Columna de recaudación destacada en azul metálico */
 .tabla tbody td:last-child {
     font-weight: 700;
     color: var(--azul-claro);
     text-shadow: 0 0 10px rgba(111, 168, 220, 0.5);
-}
-
-/* ---------- Responsive ---------- */
-@media (max-width: 760px) {
-    .contenedor {
-        padding: 32px 0 56px;
-    }
-
-    .divFormulario {
-        grid-template-columns: 1fr;
-        gap: 16px;
-    }
-
-    .panel {
-        padding: 26px 20px 30px;
-    }
-
-    .acciones {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .botonRegistrar {
-        width: 100%;
-        text-align: center;
-    }
-
-    .mensajeRegistro {
-        text-align: center;
-    }
-
-    .tabla table {
-        min-width: 680px;
-    }
-}
-
-@media (max-width: 420px) {
-    .encabezado h1 {
-        font-size: 1.55rem;
-    }
-
-    .etiqueta {
-        font-size: 0.62rem;
-    }
-
-    .panelTitulo {
-        font-size: 0.95rem;
-        letter-spacing: 0.14em;
-    }
-
-    .tabla thead th,
-    .tabla tbody td {
-        padding: 10px 12px;
-        font-size: 0.82rem;
-    }
+    white-space: nowrap;
 }
 
 /* ---------- Resumen estadístico ---------- */
@@ -462,6 +422,7 @@ input[type="number"] {
     border: 1px solid var(--border-soft);
     border-radius: var(--radius);
     box-shadow: var(--shadow-glow);
+    min-width: 0;
 }
 
 .tarjetaEstadistica h2 {
@@ -470,6 +431,7 @@ input[type="number"] {
     font-size: 0.8rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
+    overflow-wrap: anywhere;
 }
 
 .tarjetaEstadistica p {
@@ -481,6 +443,7 @@ input[type="number"] {
     overflow-wrap: anywhere;
 }
 
+/* ---------- Tarjetas de torneos ---------- */
 .contenedorTarjetas {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
@@ -496,6 +459,7 @@ input[type="number"] {
     border-radius: var(--radius);
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
     transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    min-width: 0;
 }
 
 .tarjetaTorneo:hover {
@@ -520,6 +484,7 @@ input[type="number"] {
     gap: 16px;
     margin: 10px 0 0;
     color: var(--text-dim);
+    flex-wrap: wrap;
 }
 
 .tarjetaTorneo strong {
@@ -528,8 +493,10 @@ input[type="number"] {
     overflow-wrap: anywhere;
 }
 
+/* ---------- Botones de acción en tabla ---------- */
 .botonEditar {
     padding: 8px 12px;
+    margin: 2px;
     color: var(--azul-hielo);
     background: rgba(74, 127, 181, 0.18);
     border: 1px solid var(--border-glow);
@@ -539,8 +506,191 @@ input[type="number"] {
     font-weight: 700;
     letter-spacing: 0.08em;
     cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
 }
 
 .botonEditar:hover {
     background: rgba(74, 127, 181, 0.35);
+    transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+/* ---------- Tablet (≤ 900px) ---------- */
+@media (max-width: 900px) {
+    .contenedor {
+        padding: 32px 0 56px;
+    }
+
+    .estadisticas {
+        gap: 14px;
+    }
+
+    .tarjetaEstadistica {
+        padding: 18px 20px;
+    }
+
+    .tarjetaEstadistica p {
+        font-size: 1.4rem;
+    }
+}
+
+/* ---------- Móvil grande (≤ 760px) ---------- */
+@media (max-width: 760px) {
+    .divFormulario {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .panel {
+        padding: 24px 18px 28px;
+        margin-bottom: 28px;
+    }
+
+    /* Las 3 tarjetas de estadísticas pasan a una sola columna */
+    .estadisticas {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 28px;
+    }
+
+    .tarjetaEstadistica {
+        padding: 16px 18px;
+    }
+
+    .tarjetaEstadistica p {
+        font-size: 1.5rem;
+    }
+
+    .acciones {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+    }
+
+    .botonRegistrar {
+        width: 100%;
+        text-align: center;
+        padding: 14px 20px;
+    }
+
+    .mensajeRegistro {
+        text-align: center;
+    }
+
+    /* La tabla conserva scroll horizontal, pero más compacta */
+    .tabla table {
+        min-width: 880px;
+        font-size: 0.86rem;
+    }
+
+    .tabla thead th {
+        font-size: 0.62rem;
+        padding: 10px 11px;
+    }
+
+    .tabla tbody td {
+        padding: 10px 11px;
+    }
+
+    .botonEditar {
+        padding: 7px 9px;
+        font-size: 0.6rem;
+        margin: 2px 1px;
+    }
+
+    .tarjetaTorneo {
+        padding: 18px 20px;
+    }
+}
+
+/* ---------- Móvil pequeño (≤ 480px) ---------- */
+@media (max-width: 480px) {
+    .contenedor {
+        padding: 22px 0 40px;
+    }
+
+    .encabezado {
+        margin-bottom: 26px;
+    }
+
+    .etiqueta {
+        font-size: 0.58rem;
+        letter-spacing: 0.26em;
+    }
+
+    .encabezado h1 {
+        font-size: 1.5rem;
+        letter-spacing: 0.02em;
+    }
+
+    .subtitulo {
+        font-size: 0.9rem;
+    }
+
+    .panelTitulo {
+        font-size: 0.9rem;
+        letter-spacing: 0.12em;
+        margin-bottom: 20px;
+    }
+
+    .panelTitulo::before {
+        width: 8px;
+        height: 8px;
+    }
+
+    .etiquetaCampo {
+        font-size: 0.72rem;
+    }
+
+    .txtInput {
+        font-size: 0.95rem;
+        padding: 10px 12px;
+    }
+
+    .tarjetaEstadistica h2 {
+        font-size: 0.72rem;
+    }
+
+    .tarjetaEstadistica p {
+        font-size: 1.3rem;
+    }
+
+    .tabla table {
+        min-width: 820px;
+        font-size: 0.8rem;
+    }
+
+    .tabla thead th {
+        font-size: 0.58rem;
+        padding: 8px 9px;
+    }
+
+    .tabla tbody td {
+        padding: 8px 9px;
+    }
+
+    /* Botones Editar/Eliminar apilados verticalmente en el celular */
+    .botonEditar {
+        display: block;
+        width: 100%;
+        margin: 3px 0;
+        padding: 7px 8px;
+        font-size: 0.58rem;
+        text-align: center;
+    }
+
+    .tarjetaTorneo {
+        padding: 16px 16px;
+    }
+
+    .tarjetaTorneo h3 {
+        font-size: 0.9rem;
+    }
+
+    .tarjetaTorneo p {
+        font-size: 0.88rem;
+    }
 }
