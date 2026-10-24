@@ -87,6 +87,8 @@ function registrarTorneo() {
 
     // 19. Calcular la recaudación estimada con: participantes × valor de inscripción
 
+    let recaudacionEstimada = participantes * valorInscripcion;
+
     // 20. Crear el objeto nuevoTorneo con los datos obtenidos
 
     // 21. Agregar el objeto al arreglo con push()
