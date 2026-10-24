@@ -149,8 +149,8 @@ function mostrarTorneos() {
             "<td>" + torneos[i].emailTorneo + "</td>" +
             "<td>" + torneos[i].recaudacionEstimadaTorneo + "</td>" +
             "<td>" +
-            "<button onclick='editarTorneo(" + i + ")',>Editar</button>" +
-            "<button >Eliminar</button>" +
+            "<button class='botonEditar' onclick='editarTorneo(" + i + ")'>Editar</button>" +
+            "<button class='botonEditar' onclick='eliminarTorneo(" + i + ")'>Eliminar</button>" +
             "</td>" +
             "</tr>"
     }
@@ -210,4 +210,14 @@ function actualizarEstadisticas() {
     document.getElementById("totalTorneos").innerText = torneos.length;
     document.getElementById("totalParticipantes").innerText = totalParticipantes;
     document.getElementById("recaudacionTotal").innerText = recaudacionTotal; 
+}
+
+function eliminarTorneo(indice){
+    if (!confirm("¿Desea eliminar este torneo?")) {
+        return;
+    }
+
+    torneos.splice(indice,1);
+    mostrarTorneos();
+    actualizarEstadisticas();
 }
