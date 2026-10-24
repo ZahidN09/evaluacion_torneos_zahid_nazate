@@ -35,6 +35,7 @@ function registrarTorneo() {
     let cmpParticipantesError = document.getElementById("txtParticipantesError");
     let cmpValorInscripcionError = document.getElementById("txtValorInscripcionError");
     let cmpEmailError = document.getElementById("txtEmailError");
+    let cmpRegistro = document.getElementById("txtRegistro");
 
     // 14. Validar que el nombre tenga al menos 4 caracteres
     if (nombre.length < 4) {
@@ -83,7 +84,10 @@ function registrarTorneo() {
 
     // Si alguna validación falla, mostrar mensajes de error y detener la ejecución
 
-    if(errorValidacion) return;
+    if (errorValidacion){
+        cmpRegistro.innerText = "*Registro no completado*";
+        return;
+    }
 
     // 19. Calcular la recaudación estimada con: participantes × valor de inscripción
 
@@ -91,11 +95,23 @@ function registrarTorneo() {
 
     // 20. Crear el objeto nuevoTorneo con los datos obtenidos
 
+    let nuevoTorneo = {
+        nombreTorneo: nombre,
+        categoriaTorneo: categoria,
+        participantesTorneo: participantes,
+        valorInscripcionTorneo: valorInscripcion,
+        emailTorneo: email
+    };
+
     // 21. Agregar el objeto al arreglo con push()
+    torneos.push(nuevoTorneo);
 
     // 22. Llamar a mostrarTorneos() y limpiarFormulario()
+    mostrarTorneos();
+    limpiarFormulario();
 
     // 23. Mostrar un mensaje de registro exitoso
+    cmpRegistro.innerText = "*Registo Exitoso*";
 }
 
 /**
