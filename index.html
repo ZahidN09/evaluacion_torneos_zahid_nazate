@@ -25,7 +25,20 @@
             <h1>Dashboard de Torneos Gamer</h1>
             <p class="subtitulo">Registra tus torneos y controla la recaudación en tiempo real</p>
         </header>
-
+        <section class="estadisticas" aria-label="Estadísticas de torneos">
+            <article class="tarjetaEstadistica">
+                <h2>Total de torneos</h2>
+                <p id="totalTorneos">0</p>
+            </article>
+            <article class="tarjetaEstadistica">
+                <h2>Total de participantes</h2>
+                <p id="totalParticipantes">0</p>
+            </article>
+            <article class="tarjetaEstadistica">
+                <h2>Recaudación total</h2>
+                <p id="recaudacionTotal">$0</p>
+            </article>
+        </section>
         <!-- ================= FORMULARIO ================= -->
         <section class="panel">
             <h2 class="panelTitulo">Registro de torneo</h2>
@@ -34,8 +47,8 @@
 
                 <div class="campo">
                     <label class="etiquetaCampo" for="txtNombreTorneo">Nombre del torneo</label>
-                    <input class="txtInput" id="txtNombreTorneo" type="text"
-                        placeholder="Ej. Copa Neón 2025" autocomplete="off" />
+                    <input class="txtInput" id="txtNombreTorneo" type="text" placeholder="Ej. Copa Neón 2025"
+                        autocomplete="off" />
                     <div class="divError">
                         <p id="txtNombreTorneoError"></p>
                     </div>
@@ -66,8 +79,7 @@
 
                 <div class="campo">
                     <label class="etiquetaCampo" for="txtValorInscripcion">Valor de inscripción</label>
-                    <input class="txtInput" id="txtValorInscripcion" type="number" min="1"
-                        placeholder="Ej. 25000" />
+                    <input class="txtInput" id="txtValorInscripcion" type="number" min="1" placeholder="Ej. 25000" />
                     <div class="divError">
                         <p id="txtValorInscripcionError"></p>
                     </div>
@@ -85,7 +97,7 @@
             </div>
 
             <div class="acciones">
-                <input class="botonRegistrar" type="button" value="REGISTRAR TORNEO"
+                <input id="btnGuardarTorneo" class="botonRegistrar" type="button" value="REGISTRAR TORNEO"
                     onclick="registrarTorneo();" />
                 <p id="txtRegistro" class="mensajeRegistro" aria-live="polite"></p>
             </div>

@@ -9,6 +9,8 @@
 // nombre, categoria, participantes, valorInscripcion, email y recaudacion.
 let torneos = [];
 
+indiceEdicion = -1;
+let estado = "";
 /**
  * Actividad 4. Registrar y validar un torneo (30 puntos)
  * 12. Crear la función registrarTorneo() sin parámetros.
@@ -96,7 +98,6 @@ function registrarTorneo() {
     let recaudacionEstimada = participantes * valorInscripcion;
 
     // 20. Crear el objeto nuevoTorneo con los datos obtenidos
-
     let nuevoTorneo = {
         nombreTorneo: nombre,
         categoriaTorneo: categoria,
@@ -106,10 +107,15 @@ function registrarTorneo() {
         recaudacionEstimadaTorneo: recaudacionEstimada
     };
 
-    // 21. Agregar el objeto al arreglo con push()
-    torneos.push(nuevoTorneo);
+    if (estado != "editar") {
+        // 21. Agregar el objeto al arreglo con push()
+        torneos.push(nuevoTorneo);
+        // 22. Llamar a mostrarTorneos() y limpiarFormulario()
 
-    // 22. Llamar a mostrarTorneos() y limpiarFormulario()
+    } else {
+        torneos[indiceEdicion]=nuevoTorneo;
+    }
+
     mostrarTorneos();
     limpiarFormulario();
 
@@ -117,6 +123,8 @@ function registrarTorneo() {
     cmpRegistro.innerText = "*Registo Exitoso*";
     cmpRegistro.classList.remove("mensajeError");
     cmpRegistro.classList.add("mensajeExito");
+
+    actualizarEstadisticas();
 }
 
 /**
@@ -141,7 +149,7 @@ function mostrarTorneos() {
             "<td>" + torneos[i].emailTorneo + "</td>" +
             "<td>" + torneos[i].recaudacionEstimadaTorneo + "</td>" +
             "<td>" +
-            "<button >Editar</button>" +
+            "<button onclick='editarTorneo(" + i + ")',>Editar</button>" +
             "<button >Eliminar</button>" +
             "</td>" +
             "</tr>"
@@ -168,4 +176,38 @@ function limpiarFormulario() {
     cmpParticipantes.value = "";
     cmpValorInscripcion.value = "";
     cmpEmail.value = "";
+}
+
+
+function editarTorneo(indice) {
+    let torneo = torneos[indice];
+    estado = "editar";
+    limpiarFormulario();
+    document.getElementById("txtNombreTorneo").value = torneo.nombreTorneo;
+    document.getElementById("txtCategoria").value = torneo.categoriaTorneo;
+    document.getElementById("txtParticipantes").value = torneo.participantesTorneo;
+    document.getElementById("txtValorInscripcion").value = torneo.valorInscripcionTorneo;
+    document.getElementById("txtEmail").value = torneo.emailTorneo;
+
+    indiceEdicion = indice;
+    document.getElementById("btnGuardarTorneo").value = "ACTUALIZAR TORNEO";
+    document.getElementById("txtRegistro").innerText = "";
+    document.getElementById("txtRegistro").classList.remove("mensajeError", "mensajeExito");
+    document.getElementById("txtNombreTorneo").focus();
+
+    actualizarEstadisticas();
+}
+
+function actualizarEstadisticas() {
+    let totalParticipantes = 0;
+    let recaudacionTotal = 0;
+
+    for (let i = 0; i < torneos.length; i++) {
+        totalParticipantes += torneos[i].participantesTorneo;
+        recaudacionTotal += torneos[i].recaudacionEstimadaTorneo;
+    }
+
+    document.getElementById("totalTorneos").innerText = torneos.length;
+    document.getElementById("totalParticipantes").innerText = totalParticipantes;
+    document.getElementById("recaudacionTotal").innerText = recaudacionTotal; 
 }
