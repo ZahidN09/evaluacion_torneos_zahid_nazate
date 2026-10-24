@@ -28,8 +28,18 @@ function registrarTorneo() {
     let valorInscripcion = cmpValorInscripcion.value;
     let email = cmpEmail.value;
 
+    let errorValidacion = false;
+
+    let cmpErrorNombre = document.getElementById("txtNombreTorneoError");
 
     // 14. Validar que el nombre tenga al menos 4 caracteres
+    if (nombre.length < 4) {
+        let cmpErrorNombre = document.getElementById("txtNombreTorneoError");
+        cmpErrorNombre.innerText = "El nombre debe tener almenos 4 caractéres";
+        errorValidacion = true;
+    } else {
+        cmpErrorNombre.innerText = "";
+    }
 
     // 15. Validar que se haya seleccionado una categoría
 
