@@ -16,6 +16,19 @@ let torneos = [];
 function registrarTorneo() {
     // 13. Obtener los valores de todos los campos con document.getElementById()
 
+    let cmpNombre = document.getElementById("txtNombreTorneo");
+    let cmpCategoria = document.getElementById("txtCategoria");
+    let cmpParticipantes = document.getElementById("txtParticipantes");
+    let cmpValorInscripcion = document.getElementById("txtValorInscripcion");
+    let cmpEmail = document.getElementById("txtEmail");
+
+    let nombre = cmpNombre.value;
+    let categoria = cmpCategoria.value;
+    let participantes = cmpParticipantes.value;
+    let valorInscripcion = cmpValorInscripcion.value;
+    let email = cmpEmail.value;
+
+
     // 14. Validar que el nombre tenga al menos 4 caracteres
 
     // 15. Validar que se haya seleccionado una categoría
