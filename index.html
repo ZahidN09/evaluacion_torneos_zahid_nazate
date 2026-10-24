@@ -11,31 +11,38 @@
     <h1>Dashboard de Torneos Gamer</h1>
     <div class="divFormulario">
         <p>Nombre del torneo</p>
-        <input class= "txtInput" id="txtNombreTorneo" type="text" />
+        <input class="txtInput" id="txtNombreTorneo" type="text" />
         <div class="divError">
             <p id="txtNombreTorneoError"></p>
         </div>
 
         <p>Categoría</p>
-        <input class= "txtInput" id="txtCategoria" type="text" placeholder=" Lucha, Estrategia, Arcade, Deportes, Aventura" />
+        <label for="txtCategoria">Elige una Categoría:</label>
+        <select id="txtCategoria" name="txtCategoria">
+            <option value="Lucha" >Lucha</option>
+            <option value="Estrategia" >Estrategia</option>
+            <option value="Arcade">Arcade</option>
+            <option value="Deportes">Deportes</option>
+            <option value="Aventura">Aventura</option>
+        </select>
         <div class="divError">
             <p id="txtCategoriaError"></p>
         </div>
 
         <p>Participantes</p>
-        <input class= "txtInput" id="txtParticipantes" type="text" />
+        <input class="txtInput" id="txtParticipantes" type="number" />
         <div class="divError">
             <p id="txtParticipantesError"></p>
         </div>
 
         <p>Valor de Inscripción</p>
-        <input class= "txtInput" id="txtValorInscripcion" type="text" />
+        <input class="txtInput" id="txtValorInscripcion" type="number" />
         <div class="divError">
             <p id="txtValorInscripcionError"></p>
         </div>
 
         <p>Email organizador</p>
-        <input class= "txtInput" id="txtEmail" type="text" />
+        <input class="txtInput" id="txtEmail" type="text" />
         <div class="divError">
             <p id="txtEmailError"></p>
         </div>

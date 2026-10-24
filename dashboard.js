@@ -156,7 +156,7 @@ function limpiarFormulario() {
     let cmpEmail = document.getElementById("txtEmail");
 
     cmpNombre.value = "";
-    cmpCategoria.value = "";
+    cmpCategoria.value = "Lucha";
     cmpParticipantes.value = "";
     cmpValorInscripcion.value = "";
     cmpEmail.value = "";
