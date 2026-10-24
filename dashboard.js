@@ -84,10 +84,12 @@ function registrarTorneo() {
 
     // Si alguna validación falla, mostrar mensajes de error y detener la ejecución
 
-    if (errorValidacion) {
-        cmpRegistro.innerText = "*Registro no completado*";
-        return;
-    }
+if (errorValidacion) {
+    cmpRegistro.innerText = "*Registro no completado*";
+    cmpRegistro.classList.remove("mensajeExito");
+    cmpRegistro.classList.add("mensajeError");
+    return;
+}
 
     // 19. Calcular la recaudación estimada con: participantes × valor de inscripción
 
@@ -113,6 +115,8 @@ function registrarTorneo() {
 
     // 23. Mostrar un mensaje de registro exitoso
     cmpRegistro.innerText = "*Registo Exitoso*";
+cmpRegistro.classList.remove("mensajeError");
+cmpRegistro.classList.add("mensajeExito");
 }
 
 /**

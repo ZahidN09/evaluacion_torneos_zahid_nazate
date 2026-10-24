@@ -1,3 +1,447 @@
+/* ==========================================================================
+   ESTILOS · Dashboard de Torneos Gamer
+   Estilo: Metálico · Rojo & Azul acero · Responsive
+   ========================================================================== */
+
+/* ---------- Variables ---------- */
+:root {
+    --bg-deep: #070a12;
+    --bg-mid: #0f1626;
+    --bg-panel: rgba(18, 26, 44, 0.78);
+    --border-glow: rgba(111, 168, 220, 0.28);
+    --border-soft: rgba(111, 168, 220, 0.14);
+
+    /* Azul acero metálico */
+    --azul-metal: #4a7fb5;
+    --azul-claro: #6fa8dc;
+    --azul-hielo: #b8d4f0;
+    --plata: #c8d2e0;
+
+    /* Rojo metálico */
+    --rojo-metal: #c8102e;
+    --rojo-claro: #ff4d5e;
+    --rojo-oscuro: #7a0a1c;
+
+    --text-main: #e8eef8;
+    --text-dim: #8899b5;
+    --error: #ff4d5e;
+    --success: #6fa8dc;
+
+    --shadow-glow: 0 0 22px rgba(74, 127, 181, 0.22);
+    --radius: 16px;
+    --font-display: 'Orbitron', sans-serif;
+    --font-body: 'Rajdhani', sans-serif;
+}
+
+/* ---------- Reset suave ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* ---------- Fondo general ---------- */
+body {
+    min-height: 100vh;
+    font-family: var(--font-body);
+    color: var(--text-main);
+    background-color: var(--bg-deep);
+    background-image:
+        radial-gradient(circle at 12% 8%, rgba(74, 127, 181, 0.22), transparent 42%),
+        radial-gradient(circle at 88% 88%, rgba(200, 16, 46, 0.20), transparent 45%),
+        linear-gradient(rgba(111, 168, 220, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(111, 168, 220, 0.045) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+    background-attachment: fixed;
+    line-height: 1.45;
+}
+
+/* ---------- Contenedor principal ---------- */
+.contenedor {
+    width: min(1180px, 94vw);
+    margin: 0 auto;
+    padding: 48px 0 72px;
+}
+
+/* ---------- Encabezado ---------- */
+.encabezado {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.etiqueta {
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--azul-claro);
+    margin: 0 0 10px;
+    text-shadow: 0 0 14px rgba(111, 168, 220, 0.65);
+}
+
+.encabezado h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 4.5vw, 3.1rem);
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    margin: 0;
+    background: linear-gradient(90deg, var(--azul-hielo) 0%, var(--azul-claro) 35%, var(--rojo-claro) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 0 18px rgba(111, 168, 220, 0.4));
+}
+
+.subtitulo {
+    margin: 12px auto 0;
+    max-width: 560px;
+    font-size: 1.05rem;
+    color: var(--text-dim);
+    letter-spacing: 0.02em;
+}
+
+/* ---------- Paneles (glassmorphism metálico) ---------- */
+.panel {
+    position: relative;
+    background:
+        linear-gradient(180deg, rgba(200, 210, 224, 0.06) 0%, rgba(200, 210, 224, 0) 40%),
+        var(--bg-panel);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius);
+    padding: 32px 30px 36px;
+    margin-bottom: 36px;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), var(--shadow-glow);
+    overflow: hidden;
+}
+
+/* Línea metálica superior: azul → rojo */
+.panel::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+        transparent,
+        var(--azul-hielo) 20%,
+        var(--azul-metal) 45%,
+        var(--rojo-metal) 75%,
+        transparent);
+    opacity: 0.9;
+}
+
+.panelTitulo {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--azul-hielo);
+    margin: 0 0 26px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.panelTitulo::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: linear-gradient(135deg, var(--azul-claro), var(--azul-metal));
+    box-shadow: 0 0 12px var(--azul-claro);
+    transform: rotate(45deg);
+    flex: 0 0 auto;
+}
+
+/* ---------- Formulario (grid responsive) ---------- */
+.divFormulario {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 24px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.campoAncho {
+    grid-column: 1 / -1;
+}
+
+.etiquetaCampo {
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+}
+
+/* ---------- Inputs metálicos ---------- */
+.txtInput {
+    width: 100%;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-main);
+    background: linear-gradient(180deg, rgba(200, 210, 224, 0.05) 0%, rgba(10, 16, 30, 0.85) 100%);
+    border: 1px solid rgba(111, 168, 220, 0.22);
+    border-radius: 10px;
+    padding: 12px 14px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    appearance: none;
+}
+
+.txtInput::placeholder {
+    color: rgba(136, 153, 181, 0.6);
+}
+
 .txtInput:hover {
-  background-color: rgb(168, 255, 150); /* El color cambia instantáneamente */
+    background-color: rgba(111, 168, 220, 0.08);
+    border-color: rgba(111, 168, 220, 0.5);
+}
+
+.txtInput:focus {
+    border-color: var(--azul-claro);
+    background-color: rgba(111, 168, 220, 0.1);
+    box-shadow: 0 0 0 3px rgba(111, 168, 220, 0.18), 0 0 18px rgba(74, 127, 181, 0.35);
+}
+
+/* Select con flecha personalizada (azul metálico) */
+select.txtInput {
+    cursor: pointer;
+    background-image:
+        linear-gradient(45deg, transparent 50%, var(--azul-claro) 50%),
+        linear-gradient(135deg, var(--azul-claro) 50%, transparent 50%);
+    background-position:
+        calc(100% - 20px) calc(50% - 3px),
+        calc(100% - 14px) calc(50% - 3px);
+    background-size: 6px 6px, 6px 6px;
+    background-repeat: no-repeat;
+    padding-right: 40px;
+}
+
+select.txtInput option {
+    background: #0f1626;
+    color: var(--text-main);
+}
+
+/* Quitar flechas de number */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+/* ---------- Mensajes de error ---------- */
+.divError {
+    min-height: 0;
+}
+
+.divError p {
+    margin: 6px 0 0;
+    font-size: 0.72rem;
+    font-style: italic;
+    color: var(--rojo-claro);
+    letter-spacing: 0.02em;
+    white-space: pre-line;
+    line-height: 1.35;
+    text-shadow: 0 0 8px rgba(255, 77, 94, 0.35);
+}
+
+/* ---------- Acciones ---------- */
+.acciones {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 18px 26px;
+    margin-top: 30px;
+}
+
+/* Botón rojo metálico con brillo plateado */
+.botonRegistrar {
+    font-family: var(--font-display);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #fff5f6;
+    background: linear-gradient(135deg,
+        var(--rojo-claro) 0%,
+        var(--rojo-metal) 45%,
+        var(--rojo-oscuro) 100%);
+    border: 1px solid rgba(255, 180, 190, 0.35);
+    border-radius: 10px;
+    padding: 14px 34px;
+    cursor: pointer;
+    box-shadow:
+        0 0 22px rgba(200, 16, 46, 0.5),
+        inset 0 1px 0 rgba(255, 220, 225, 0.35),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.botonRegistrar:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+    box-shadow:
+        0 0 34px rgba(255, 77, 94, 0.75),
+        inset 0 1px 0 rgba(255, 230, 235, 0.5),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+}
+
+.botonRegistrar:active {
+    transform: translateY(0);
+    filter: brightness(0.95);
+}
+
+/* Mensaje de registro (base neutra) */
+.mensajeRegistro {
+    margin: 0;
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    min-height: 1.2em;
+}
+
+.mensajeRegistro.mensajeError {
+    color: var(--rojo-claro);
+    text-shadow: 0 0 14px rgba(255, 77, 94, 0.4);
+}
+
+.mensajeRegistro.mensajeExito {
+    color: var(--azul-claro);
+    text-shadow: 0 0 14px rgba(111, 168, 220, 0.45);
+}
+
+/* ---------- Tabla metálica ---------- */
+.tabla {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid var(--border-soft);
+    -webkit-overflow-scrolling: touch;
+}
+
+.tabla table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 760px;
+    font-size: 0.92rem;
+}
+
+.tabla thead th {
+    font-family: var(--font-display);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-align: left;
+    color: var(--azul-hielo);
+    background: linear-gradient(180deg,
+        rgba(111, 168, 220, 0.14) 0%,
+        rgba(74, 127, 181, 0.06) 100%);
+    border-bottom: 1px solid rgba(111, 168, 220, 0.3);
+    padding: 14px 16px;
+    white-space: nowrap;
+    text-shadow: 0 0 10px rgba(111, 168, 220, 0.3);
+}
+
+.tabla tbody td {
+    padding: 13px 16px;
+    border-bottom: 1px solid rgba(111, 168, 220, 0.08);
+    color: var(--text-main);
+    vertical-align: middle;
+}
+
+.tabla tbody tr:nth-child(even) {
+    background: rgba(111, 168, 220, 0.03);
+}
+
+.tabla tbody tr:hover {
+    background: rgba(200, 16, 46, 0.08);
+}
+
+.tabla tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Columna de recaudación destacada en azul metálico */
+.tabla tbody td:last-child {
+    font-weight: 700;
+    color: var(--azul-claro);
+    text-shadow: 0 0 10px rgba(111, 168, 220, 0.5);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 760px) {
+    .contenedor {
+        padding: 32px 0 56px;
+    }
+
+    .divFormulario {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .panel {
+        padding: 26px 20px 30px;
+    }
+
+    .acciones {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .botonRegistrar {
+        width: 100%;
+        text-align: center;
+    }
+
+    .mensajeRegistro {
+        text-align: center;
+    }
+
+    .tabla table {
+        min-width: 680px;
+    }
+}
+
+@media (max-width: 420px) {
+    .encabezado h1 {
+        font-size: 1.55rem;
+    }
+
+    .etiqueta {
+        font-size: 0.62rem;
+    }
+
+    .panelTitulo {
+        font-size: 0.95rem;
+        letter-spacing: 0.14em;
+    }
+
+    .tabla thead th,
+    .tabla tbody td {
+        padding: 10px 12px;
+        font-size: 0.82rem;
+    }
 }

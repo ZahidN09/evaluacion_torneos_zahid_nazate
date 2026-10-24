@@ -1,82 +1,118 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard de Torneos Gamer</title>
-    <script src="dashboard.js"></script>
+
+    <!-- Tipografías -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+
     <link rel="stylesheet" href="estilos.css" />
+    <script src="dashboard.js"></script>
 </head>
 
 <body>
-    <h1>Dashboard de Torneos Gamer</h1>
-    <div class="divFormulario">
-        <p>Nombre del torneo</p>
-        <input class="txtInput" id="txtNombreTorneo" type="text" />
-        <div class="divError">
-            <p id="txtNombreTorneoError"></p>
-        </div>
+    <main class="contenedor">
 
-        <p>Categoría</p>
-        <label for="txtCategoria">Elige una Categoría:</label>
-        <select id="txtCategoria" name="txtCategoria">
-            <option value="Lucha" >Lucha</option>
-            <option value="Estrategia" >Estrategia</option>
-            <option value="Arcade">Arcade</option>
-            <option value="Deportes">Deportes</option>
-            <option value="Aventura">Aventura</option>
-        </select>
-        <div class="divError">
-            <p id="txtCategoriaError"></p>
-        </div>
+        <header class="encabezado">
+            <p class="etiqueta">// ARENA DE COMPETENCIA</p>
+            <h1>Dashboard de Torneos Gamer</h1>
+            <p class="subtitulo">Registra tus torneos y controla la recaudación en tiempo real</p>
+        </header>
 
-        <p>Participantes</p>
-        <input class="txtInput" id="txtParticipantes" type="number" />
-        <div class="divError">
-            <p id="txtParticipantesError"></p>
-        </div>
+        <!-- ================= FORMULARIO ================= -->
+        <section class="panel">
+            <h2 class="panelTitulo">Registro de torneo</h2>
 
-        <p>Valor de Inscripción</p>
-        <input class="txtInput" id="txtValorInscripcion" type="number" />
-        <div class="divError">
-            <p id="txtValorInscripcionError"></p>
-        </div>
+            <div class="divFormulario">
 
-        <p>Email organizador</p>
-        <input class="txtInput" id="txtEmail" type="text" />
-        <div class="divError">
-            <p id="txtEmailError"></p>
-        </div>
+                <div class="campo">
+                    <label class="etiquetaCampo" for="txtNombreTorneo">Nombre del torneo</label>
+                    <input class="txtInput" id="txtNombreTorneo" type="text"
+                        placeholder="Ej. Copa Neón 2025" autocomplete="off" />
+                    <div class="divError">
+                        <p id="txtNombreTorneoError"></p>
+                    </div>
+                </div>
 
-    </div>
-    <input type="button" value="REGISTRAR TORNEO" onclick="registrarTorneo();" />
-    <p id="txtRegistro"></p>
+                <div class="campo">
+                    <label class="etiquetaCampo" for="txtCategoria">Categoría</label>
+                    <select class="txtInput" id="txtCategoria" name="txtCategoria">
+                        <option value="Lucha">Lucha</option>
+                        <option value="Estrategia">Estrategia</option>
+                        <option value="Arcade">Arcade</option>
+                        <option value="Deportes">Deportes</option>
+                        <option value="Aventura">Aventura</option>
+                    </select>
+                    <div class="divError">
+                        <p id="txtCategoriaError"></p>
+                    </div>
+                </div>
 
-    <h2>Tabla de Resgistros</h2>
-    <div class="tabla">
-        <table>
-            <thead>
-                <tr>
-                    <th>Nombre del torneo</th>
-                    <th>Categoría</th>
-                    <th>Participantes</th>
-                    <th>Valor de Inscripción</th>
-                    <th>Email organizador</th>
-                    <th>Recaudación Estimada</th>
-                </tr>
-            </thead>
-            <tbody id="tablaContenido">
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+                <div class="campo">
+                    <label class="etiquetaCampo" for="txtParticipantes">Participantes</label>
+                    <input class="txtInput" id="txtParticipantes" type="number" min="1" max="100"
+                        placeholder="1 - 100" />
+                    <div class="divError">
+                        <p id="txtParticipantesError"></p>
+                    </div>
+                </div>
 
+                <div class="campo">
+                    <label class="etiquetaCampo" for="txtValorInscripcion">Valor de inscripción</label>
+                    <input class="txtInput" id="txtValorInscripcion" type="number" min="1"
+                        placeholder="Ej. 25000" />
+                    <div class="divError">
+                        <p id="txtValorInscripcionError"></p>
+                    </div>
+                </div>
+
+                <div class="campo campoAncho">
+                    <label class="etiquetaCampo" for="txtEmail">Email organizador</label>
+                    <input class="txtInput" id="txtEmail" type="text" placeholder="organizador@correo.com"
+                        autocomplete="off" />
+                    <div class="divError">
+                        <p id="txtEmailError"></p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="acciones">
+                <input class="botonRegistrar" type="button" value="REGISTRAR TORNEO"
+                    onclick="registrarTorneo();" />
+                <p id="txtRegistro" class="mensajeRegistro" aria-live="polite"></p>
+            </div>
+        </section>
+
+        <!-- ================= TABLA ================= -->
+        <section class="panel">
+            <h2 class="panelTitulo">Tabla de registros</h2>
+
+            <div class="tabla">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre del torneo</th>
+                            <th>Categoría</th>
+                            <th>Participantes</th>
+                            <th>Valor de Inscripción</th>
+                            <th>Email organizador</th>
+                            <th>Recaudación Estimada</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaContenido"></tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
 </body>
 
 </html>
