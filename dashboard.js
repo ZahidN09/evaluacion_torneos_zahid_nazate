@@ -31,17 +31,28 @@ function registrarTorneo() {
     let errorValidacion = false;
 
     let cmpErrorNombre = document.getElementById("txtNombreTorneoError");
+    let cmpErrorCategoria = document.getElementById("txtCategoriaError");
 
     // 14. Validar que el nombre tenga al menos 4 caracteres
     if (nombre.length < 4) {
-        let cmpErrorNombre = document.getElementById("txtNombreTorneoError");
-        cmpErrorNombre.innerText = "El nombre debe tener almenos 4 caractéres";
+        cmpErrorNombre.innerText = "*El nombre debe tener almenos 4 caractéres";
         errorValidacion = true;
     } else {
         cmpErrorNombre.innerText = "";
     }
 
     // 15. Validar que se haya seleccionado una categoría
+    //Lucha, Estrategia, Arcade, Deportes, Aventura
+    if (categoria != "Lucha" &&
+        categoria != "Estrategia" &&
+        categoria != "Arcade" &&
+        categoria != "Deportes" &&
+        categoria != "Aventura") {
+        cmpErrorCategoria.innerText = "*Categoría no válida \n (Lucha, Estrategia, Arcade, Deportes, Aventura)";
+        errorValidacion = true;
+    } else {
+        cmpErrorCategoria.innerText = "";
+    }
 
     // 16. Validar que los participantes sean un entero entre 1 y 100
 
