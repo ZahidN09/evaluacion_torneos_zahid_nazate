@@ -84,7 +84,7 @@ function registrarTorneo() {
 
     // Si alguna validación falla, mostrar mensajes de error y detener la ejecución
 
-    if (errorValidacion){
+    if (errorValidacion) {
         cmpRegistro.innerText = "*Registro no completado*";
         return;
     }
@@ -100,7 +100,8 @@ function registrarTorneo() {
         categoriaTorneo: categoria,
         participantesTorneo: participantes,
         valorInscripcionTorneo: valorInscripcion,
-        emailTorneo: email
+        emailTorneo: email,
+        recaudacionEstimadaTorneo : recaudacionEstimada
     };
 
     // 21. Agregar el objeto al arreglo con push()
@@ -120,14 +121,26 @@ function registrarTorneo() {
  */
 function mostrarTorneos() {
     // 25. Crear una variable vacía para concatenar el HTML
+    let contenido = "";
 
     // 26. Recorrer el arreglo torneos utilizando obligatoriamente un ciclo for
-
     // 27. En cada vuelta, obtener el objeto actual y construir una fila de la tabla (<tr>...</tr>)
-
     // 28. Mostrar todos los datos y la recaudación calculada
 
+    let cmpTabla = document.getElementById("tablaContenido");
+    for (let i = 0; i < torneos.length; i++) {
+        contenido += "<tr>" +
+            "<td>" + torneos[i].nombreTorneo + "</td>" +
+            "<td>" + torneos[i].categoriaTorneo + "</td>" +
+            "<td>" + torneos[i].participantesTorneo + "</td>" +
+            "<td>" + torneos[i].valorInscripcionTorneo + "</td>" +
+            "<td>" + torneos[i].emailTorneo + "</td>" +
+            "<td>" + torneos[i].recaudacionEstimadaTorneo + "</td>" +
+            "</tr>"
+    }
+
     // 29. Insertar el HTML final en el cuerpo de la tabla sin duplicar filas (usando innerHTML)
+    cmpTabla.innerHTML = contenido;
 }
 
 /**
