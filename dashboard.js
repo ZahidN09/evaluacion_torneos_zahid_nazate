@@ -83,6 +83,8 @@ function registrarTorneo() {
 
     // Si alguna validación falla, mostrar mensajes de error y detener la ejecución
 
+    if(errorValidacion) return;
+
     // 19. Calcular la recaudación estimada con: participantes × valor de inscripción
 
     // 20. Crear el objeto nuevoTorneo con los datos obtenidos
