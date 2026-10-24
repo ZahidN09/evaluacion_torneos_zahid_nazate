@@ -116,7 +116,7 @@ function registrarTorneo() {
         torneos[indiceEdicion]=nuevoTorneo;
     }
 
-    mostrarTorneos();
+    buscarTorneos();
     limpiarFormulario();
 
     // 23. Mostrar un mensaje de registro exitoso
@@ -132,15 +132,14 @@ function registrarTorneo() {
  * 24. Crear la función mostrarTorneos() sin parámetros.
  */
 function mostrarTorneos() {
-    // 25. Crear una variable vacía para concatenar el HTML
     let contenido = "";
-
-    // 26. Recorrer el arreglo torneos utilizando obligatoriamente un ciclo for
-    // 27. En cada vuelta, obtener el objeto actual y construir una fila de la tabla (<tr>...</tr>)
-    // 28. Mostrar todos los datos y la recaudación calculada
-
     let cmpTabla = document.getElementById("tablaContenido");
+
     for (let i = 0; i < torneos.length; i++) {
+        if (!coincideBusqueda(torneos[i])) {
+            continue;
+        }
+
         contenido += "<tr>" +
             "<td>" + torneos[i].nombreTorneo + "</td>" +
             "<td>" + torneos[i].categoriaTorneo + "</td>" +
@@ -155,8 +154,42 @@ function mostrarTorneos() {
             "</tr>"
     }
 
-    // 29. Insertar el HTML final en el cuerpo de la tabla sin duplicar filas (usando innerHTML)
     cmpTabla.innerHTML = contenido;
+}
+
+function generarTarjetas() {
+    let contenido = "";
+    let contenedor = document.getElementById("contenedorTarjetas");
+
+    for (let i = 0; i < torneos.length; i++) {
+        let torneo = torneos[i];
+        if (!coincideBusqueda(torneo)) {
+            continue;
+        }
+
+        contenido +=
+            "<article class='tarjetaTorneo'>" +
+            "<h3>" + torneo.nombreTorneo + "</h3>" +
+            "<p><span>Categoría</span><strong>" + torneo.categoriaTorneo + "</strong></p>" +
+            "<p><span>Participantes</span><strong>" + torneo.participantesTorneo + "</strong></p>" +
+            "<p><span>Valor de inscripción</span><strong>$" + torneo.valorInscripcionTorneo + "</strong></p>" +
+            "<p><span>Recaudación</span><strong>$" + torneo.recaudacionEstimadaTorneo + "</strong></p>" +
+            "</article>";
+    }
+
+    contenedor.innerHTML = contenido;
+}
+
+function coincideBusqueda(torneo) {
+    let textoBusqueda = document.getElementById("txtBuscarTorneo").value.trim().toLowerCase();
+    return torneo.nombreTorneo.toLowerCase().includes(textoBusqueda) ||
+        torneo.categoriaTorneo.toLowerCase().includes(textoBusqueda);
+}
+
+
+function buscarTorneos() {
+    mostrarTorneos();
+    generarTarjetas();
 }
 
 /**
@@ -212,12 +245,13 @@ function actualizarEstadisticas() {
     document.getElementById("recaudacionTotal").innerText = recaudacionTotal; 
 }
 
+
 function eliminarTorneo(indice){
     if (!confirm("¿Desea eliminar este torneo?")) {
         return;
     }
 
     torneos.splice(indice,1);
-    mostrarTorneos();
+    buscarTorneos();
     actualizarEstadisticas();
 }

@@ -107,6 +107,13 @@
         <section class="panel">
             <h2 class="panelTitulo">Tabla de registros</h2>
 
+            <div class="campo campoAncho">
+                <label class="etiquetaCampo" for="txtBuscarTorneo">Buscar por nombre o categoría</label>
+                <input class="txtInput" id="txtBuscarTorneo" type="search"
+                    placeholder="Escribe el nombre o la categoría" autocomplete="off"
+                    oninput="buscarTorneos();" />
+            </div>
+
             <div class="tabla">
                 <table>
                     <thead>
@@ -123,6 +130,11 @@
                     <tbody id="tablaContenido"></tbody>
                 </table>
             </div>
+        </section>
+
+        <section class="panel">
+            <h2 class="panelTitulo">Tarjetas de torneos</h2>
+            <div id="contenedorTarjetas" class="contenedorTarjetas"></div>
         </section>
 
     </main>
