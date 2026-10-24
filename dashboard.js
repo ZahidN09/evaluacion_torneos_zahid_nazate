@@ -84,12 +84,12 @@ function registrarTorneo() {
 
     // Si alguna validación falla, mostrar mensajes de error y detener la ejecución
 
-if (errorValidacion) {
-    cmpRegistro.innerText = "*Registro no completado*";
-    cmpRegistro.classList.remove("mensajeExito");
-    cmpRegistro.classList.add("mensajeError");
-    return;
-}
+    if (errorValidacion) {
+        cmpRegistro.innerText = "*Registro no completado*";
+        cmpRegistro.classList.remove("mensajeExito");
+        cmpRegistro.classList.add("mensajeError");
+        return;
+    }
 
     // 19. Calcular la recaudación estimada con: participantes × valor de inscripción
 
@@ -103,7 +103,7 @@ if (errorValidacion) {
         participantesTorneo: participantes,
         valorInscripcionTorneo: valorInscripcion,
         emailTorneo: email,
-        recaudacionEstimadaTorneo : recaudacionEstimada
+        recaudacionEstimadaTorneo: recaudacionEstimada
     };
 
     // 21. Agregar el objeto al arreglo con push()
@@ -115,8 +115,8 @@ if (errorValidacion) {
 
     // 23. Mostrar un mensaje de registro exitoso
     cmpRegistro.innerText = "*Registo Exitoso*";
-cmpRegistro.classList.remove("mensajeError");
-cmpRegistro.classList.add("mensajeExito");
+    cmpRegistro.classList.remove("mensajeError");
+    cmpRegistro.classList.add("mensajeExito");
 }
 
 /**
@@ -140,6 +140,10 @@ function mostrarTorneos() {
             "<td>" + torneos[i].valorInscripcionTorneo + "</td>" +
             "<td>" + torneos[i].emailTorneo + "</td>" +
             "<td>" + torneos[i].recaudacionEstimadaTorneo + "</td>" +
+            "<td>" +
+            "<button >Editar</button>" +
+            "<button >Eliminar</button>" +
+            "</td>" +
             "</tr>"
     }
 
