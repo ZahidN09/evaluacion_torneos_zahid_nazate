@@ -149,4 +149,15 @@ function mostrarTorneos() {
  */
 function limpiarFormulario() {
     // 31. Vaciar los campos del formulario, restablecer la categoría y limpiar los mensajes de error
+    let cmpNombre = document.getElementById("txtNombreTorneo");
+    let cmpCategoria = document.getElementById("txtCategoria");
+    let cmpParticipantes = document.getElementById("txtParticipantes");
+    let cmpValorInscripcion = document.getElementById("txtValorInscripcion");
+    let cmpEmail = document.getElementById("txtEmail");
+
+    cmpNombre.value = "";
+    cmpCategoria.value = "";
+    cmpParticipantes.value = "";
+    cmpValorInscripcion.value = "";
+    cmpEmail.value = "";
 }
