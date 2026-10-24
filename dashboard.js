@@ -25,7 +25,7 @@ function registrarTorneo() {
     let nombre = cmpNombre.value;
     let categoria = cmpCategoria.value;
     let participantes = parseInt(cmpParticipantes.value);
-    let valorInscripcion = cmpValorInscripcion.value;
+    let valorInscripcion = parseInt(cmpValorInscripcion.value);
     let email = cmpEmail.value;
 
     let errorValidacion = false;
@@ -33,6 +33,7 @@ function registrarTorneo() {
     let cmpErrorNombre = document.getElementById("txtNombreTorneoError");
     let cmpErrorCategoria = document.getElementById("txtCategoriaError");
     let cmpParticipantesError = document.getElementById("txtParticipantesError");
+    let cmpValorInscripcionError = document.getElementById("txtValorInscripcionError");
 
     // 14. Validar que el nombre tenga al menos 4 caracteres
     if (nombre.length < 4) {
@@ -56,14 +57,20 @@ function registrarTorneo() {
     }
 
     // 16. Validar que los participantes sean un entero entre 1 y 100
-    if(participantes>=1 && participantes<=100){
-        cmpParticipantesError.innerText =""
-    }else{
+    if (participantes >= 1 && participantes <= 100) {
+        cmpParticipantesError.innerText = ""
+    } else {
         cmpParticipantesError.innerText = "*Número de participantes no válido \n (1 a 100)";
         errorValidacion = true;
     }
 
     // 17. Validar que el valor de inscripción sea mayor que 0
+    if (valorInscripcion > 0) {
+        cmpValorInscripcionError.innerText = ""
+    } else {
+        cmpValorInscripcionError.innerText = "*Valor de inscripción no válido";
+        errorValidacion = true;
+    }
 
     // 18. Validar que el email no esté vacío. No se requiere validación avanzada de formato.
 
