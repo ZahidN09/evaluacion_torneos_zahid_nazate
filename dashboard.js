@@ -34,6 +34,7 @@ function registrarTorneo() {
     let cmpErrorCategoria = document.getElementById("txtCategoriaError");
     let cmpParticipantesError = document.getElementById("txtParticipantesError");
     let cmpValorInscripcionError = document.getElementById("txtValorInscripcionError");
+    let cmpEmailError = document.getElementById("txtEmailError");
 
     // 14. Validar que el nombre tenga al menos 4 caracteres
     if (nombre.length < 4) {
@@ -73,6 +74,12 @@ function registrarTorneo() {
     }
 
     // 18. Validar que el email no esté vacío. No se requiere validación avanzada de formato.
+    if (email.length <= 0) {
+        cmpEmailError.innerText = "*Correo vacío";
+        errorValidacion = true;
+    } else {
+        cmpEmailError.innerText = ""
+    }
 
     // Si alguna validación falla, mostrar mensajes de error y detener la ejecución
 
