@@ -7,9 +7,42 @@
 // Declarar un arreglo global vacío llamado torneos.
 // Cada elemento deberá ser un objeto con las propiedades:
 // nombre, categoria, participantes, valorInscripcion, email y recaudacion.
-let torneos = [];
+let torneos = [
+    {
+        nombreTorneo: "FIFA",
+        categoriaTorneo: "Deportes",
+        participantesTorneo: 20,
+        valorInscripcionTorneo: 5,
+        emailTorneo: "contacto@fifa.com",
+        recaudacionEstimadaTorneo: 100
+    },
+    {
+        nombreTorneo: "Valorant",
+        categoriaTorneo: "Estrategia",
+        participantesTorneo: 30,
+        valorInscripcionTorneo: 15,
+        emailTorneo: "contacto@valorant.com",
+        recaudacionEstimadaTorneo: 450
+    },
+    {
+        nombreTorneo: "Clash Royale",
+        categoriaTorneo: "Estrategia",
+        participantesTorneo: 100,
+        valorInscripcionTorneo: 10,
+        emailTorneo: "contacto@clashroyale.com",
+        recaudacionEstimadaTorneo: 1000
+    },
+    {
+        nombreTorneo: "Smash Bros",
+        categoriaTorneo: "Lucha",
+        participantesTorneo: 32,
+        valorInscripcionTorneo: 12,
+        emailTorneo: "contacto@smashbros.com",
+        recaudacionEstimadaTorneo: 384
+    }
+];
 
-indiceEdicion = -1;
+let indiceEdicion = -1;
 let estado = "";
 /**
  * Actividad 4. Registrar y validar un torneo (30 puntos)
@@ -255,3 +288,6 @@ function eliminarTorneo(indice){
     buscarTorneos();
     actualizarEstadisticas();
 }
+
+buscarTorneos();
+actualizarEstadisticas();
