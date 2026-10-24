@@ -8,6 +8,7 @@
 // Cada elemento deberá ser un objeto con las propiedades:
 // nombre, categoria, participantes, valorInscripcion, email y recaudacion.
 let torneos = [];
+let indiceEdicion = -1; 
 
 /**
  * Actividad 4. Registrar y validar un torneo (30 puntos)
@@ -164,4 +165,8 @@ function limpiarFormulario() {
     cmpParticipantes.value = "";
     cmpValorInscripcion.value = "";
     cmpEmail.value = "";
+}
+
+function editarTorneo(indice){
+    
 }
